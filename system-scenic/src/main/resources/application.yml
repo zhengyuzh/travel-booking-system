@@ -1,0 +1,36 @@
+
+server:
+  port: 8088
+location: E:/BS/scenic
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver  #mysql的jdbc驱动
+    url: jdbc:mysql://localhost:3306/system-scenic?useUnicode=true&characterEncoding=utf8&useSSL=false  #数据库位置
+    username: root
+    password: root
+    type: com.alibaba.druid.pool.DruidDataSource  #Druid连接池，Druid是一个高性能的Java数据库连接池
+    druid:
+      min-idle: 5  #最小空闲连接数
+      max-active: 10  #最大空闲连接数
+      max-wait: 3000  #最长可以等待事件
+  thymeleaf:
+    prefix: classpath:/templates/scenic/  #所有页面的位置
+    suffix: .html  #文件的格式
+    cache: false #???????????????????????????
+  web:
+    resources:
+      static-locations: classpath:/static/,classpath:/static/assets/,classpath:/static/scenicSingle/,classpath:/public/,classpath:/resources/,classpath:/META-INF/resource/,file:${location}  #file:${location}: 从文件系统的某个路径查找静态资源，与前面的location相关定，义图片位置
+  servlet:
+    multipart:
+      max-file-size: 100MB  #文件最大多少
+      max-request-size: 100MB  #上传最大多少
+mybatis-plus:
+  configuration:  #MyBatis-Plus 的一些配置信息
+    map-underscore-to-camel-case: true  #数据库字段映射，如 user_name 将自动被映射为 Java 对象中的 userName 属性
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl  #将 MyBatis 的日志输出到控制台标准输出中
+  global-config:  #MyBatis-Plus 的全局配置
+    db-config:  #数据库配置部分
+      id-type: auto  #表示 MyBatis-Plus 会自动识别主键生成策略，通常用于使用数据库的自增主键
+pagehelper:  #用于分页查询的库
+  helper-dialect: mysql  #使用 MySQL 数据库的分页语法
+alipay:

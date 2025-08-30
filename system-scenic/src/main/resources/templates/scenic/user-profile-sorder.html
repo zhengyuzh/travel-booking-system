@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+
+    <title>旅游网站</title>
+
+    <link rel="icon" type="image/x-icon" href="assets/img/logo/favicon.png">
+
+    <link rel="stylesheet" th:href="@{/assets/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/assets/css/all-fontawesome.min.css}">
+    <link rel="stylesheet" th:href="@{/assets/css/flaticon.css}">
+    <link rel="stylesheet" th:href="@{/assets/css/animate.min.css}">
+    <link rel="stylesheet" th:href="@{/assets/css/magnific-popup.min.css}">
+    <link rel="stylesheet" th:href="@{/assets/css/owl.carousel.min.css}">
+    <link rel="stylesheet" th:href="@{/assets/css/nice-select.min.css}">
+    <link rel="stylesheet" th:href="@{/assets/css/jquery-ui.min.css}">
+    <link rel="stylesheet" th:href="@{/assets/css/jquery.timepicker.min.css}">
+    <link rel="stylesheet" th:href="@{/assets/css/style.css}">
+</head>
+<body class="home-2">
+
+<div class="preloader">
+    <div class="loader">
+        <span style="--i:1;"></span>
+        <span style="--i:2;"></span>
+        <span style="--i:3;"></span>
+        <span style="--i:4;"></span>
+        <span style="--i:5;"></span>
+        <span style="--i:6;"></span>
+        <span style="--i:7;"></span>
+        <span style="--i:8;"></span>
+        <span style="--i:9;"></span>
+        <span style="--i:10;"></span>
+        <span style="--i:11;"></span>
+        <span style="--i:12;"></span>
+        <span style="--i:13;"></span>
+        <span style="--i:14;"></span>
+        <span style="--i:15;"></span>
+        <span style="--i:16;"></span>
+        <span style="--i:17;"></span>
+        <span style="--i:18;"></span>
+        <span style="--i:19;"></span>
+        <span style="--i:20;"></span>
+        <div class="loader-plane"></div>
+    </div>
+</div>
+
+
+<header class="header">
+
+
+    <div class="main-navigation">
+        <nav class="navbar navbar-expand-lg" style="background: linear-gradient(to right, #87CEFA, #feb47b);">
+            <div class="container">
+
+                <div class="mobile-menu-right">
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main_nav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-btn-icon"><i class="far fa-bars"></i></span>
+                    </button>
+                </div>
+                <div class="collapse navbar-collapse" id="main_nav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item " th:if="${!isUserLogin}">
+                            <a class="nav-link " th:href="@{/toUserLogin}" >去登录</a>
+                        </li>
+                        <li class="nav-item ">
+                            <a class="nav-link " th:href="@{/user}" >主页</a>
+                        </li>
+                        <li class="nav-item ">
+                            <a class="nav-link " th:href="@{/listScenic}" >景点</a>
+                        </li>
+                        <li class="nav-item ">
+                            <a class="nav-link " th:href="@{/listScenicRouteFront}" >路线推荐</a>
+                        </li>
+
+                        <li class="nav-item ">
+                            <a class="nav-link " th:href="@{/listHotel}" >酒店</a>
+                        </li>
+
+
+                        <li class="nav-item ">
+                            <a class="nav-link " th:href="@{/listWish}" th:if="${isUserLogin}">收藏</a>
+                        </li>
+                        <li class="nav-item ">
+                            <a class="nav-link " th:href="@{/listMySorder}" th:if="${isUserLogin}">景点订单</a>
+                        </li>
+                        <li class="nav-item ">
+                            <a class="nav-link " th:href="@{/listMyHorder}" th:if="${isUserLogin}">酒店订单</a>
+                        </li>
+                        <li class="nav-item ">
+                            <a class="nav-link " th:href="@{/listNotice}" >公告</a>
+                        </li>
+
+                    </ul>
+
+
+                    <div class="header-nav-right" th:if="${isUserLogin}">
+                        <div class="header-account">
+                            <div class="dropdown">
+                                <div data-bs-toggle="dropdown" aria-expanded="false">
+                                    <img th:src="'http://localhost:8088/'+${session.image}" alt="">
+                                </div>
+                                <ul class="dropdown-menu dropdown-menu-end">
+
+                                    <li><a class="dropdown-item" th:href="@{/userProfile}"><i class="far fa-user"></i> 个人信息</a></li>
+                                    <li><a class="dropdown-item" th:href="@{/userProfileSorder}"><i class="far fa-shopping-bag"></i> 景点订单</a></li>
+                                    <li><a class="dropdown-item" th:href="@{/userProfileHorder}"><i class="far fa-clipboard-list"></i> 酒店订单</a></li>
+                                    <li><a class="dropdown-item" th:href="@{/userProfileWish}"><i class="far fa-heart"></i> 我的收藏</a></li>
+                                    <li><a class="dropdown-item" th:href="@{/userSetting}"><i class="far fa-cog"></i> 设置</a></li>
+                                    <li><a class="dropdown-item" th:href="@{/userlogout}"><i class="far fa-sign-out"></i>退出登录</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <!--  -->
+                </div>
+            </div>
+        </nav>
+    </div>
+</header>
+
+<main class="main" style="background: linear-gradient(to right, #87CEFA, #feb47b);">
+
+    <div class="site-breadcrumb" style="background: url(assets/img/breadcrumb/4.jpg)">
+        <div class="container">
+            <h2 class="breadcrumb-title">景点订单</h2>
+            <ul class="breadcrumb-menu">
+
+            </ul>
+        </div>
+    </div>
+
+    <div class="user-profile py-120">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="user-profile-sidebar">
+                        <div class="user-profile-sidebar-top">
+                            <div class="user-profile-img">
+                                <img th:src="'http://localhost:8088/'+${session.image}" alt="">
+                                <button type="button" class="profile-img-btn"><i class="far fa-camera"></i></button>
+                                <input type="file" class="profile-img-file">
+                            </div>
+                            <h4>[[${session.currentUser}]]</h4>
+                            <p><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="abc1c4c5d8c4c5ebced3cac6dbc7ce85c8c4c6">[[${session.email}]]</a></p>
+                        </div>
+                        <ul class="user-profile-sidebar-list">
+
+                            <li><a  th:href="@{/userProfile}"><i class="far fa-user"></i> 个人信息</a></li>
+                            <li><a class="active" th:href="@{/userProfileSorder}"><i class="far fa-shopping-bag"></i> 景点订单</a></li>
+                            <li><a  th:href="@{/userProfileHorder}"><i class="far fa-clipboard-list"></i> 酒店订单</a></li>
+
+                            <li><a th:href="@{/userProfileWish}"><i class="far fa-heart"></i>我的收藏</a></li>
+
+                            <li><a  th:href="@{/userSetting}"><i class="far fa-cog"></i> 设置</a></li>
+                            <li><a th:href="@{/userlogout}"><i class="far fa-sign-out"></i> 退出登录</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-9">
+                    <div class="user-profile-wrapper">
+                        <div class="user-profile-card user-profile-listing">
+                            <div class="user-profile-card-header">
+                                <h4 class="user-profile-card-title">景点订单</h4>
+                                <div class="user-profile-card-header-right">
+                                    <!--<div class="user-profile-search">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" placeholder="Search...">
+                                            <i class="far fa-search"></i>
+                                        </div>
+                                    </div>
+                                    <a href="#" class="theme-btn"><span class="far fa-plus-circle"></span>Add Listing</a>-->
+                                </div>
+                            </div>
+                            <div class="col-lg-12">
+                                <div class="table-responsive">
+                                    <table class="table text-nowrap">
+                                        <thead>
+                                        <tr>
+                                            <th>景点</th>
+                                            <th>人数</th>
+                                            <th>总额</th>
+                                            <th>订单状态</th>
+                                            <th>操作</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr th:each="order : ${pageInfo.list}">
+                                            <td>
+                                                <div class="table-listing-info">
+                                                    <a href="#">
+                                                        <img th:src="'http://localhost:8088/'+${order.scenic.simage}" alt="">
+                                                        <div class="table-listing-content">
+                                                            <h6>[[${order.scenic.sname}]]</h6>
+                                                            <p><i class="far fa-location-dot"></i> [[${order.scenic.address}]],[[${order.scenic.country}]]</p>
+                                                            <span>￥[[${order.scenic.price}]]/人</span>
+                                                        </div>
+                                                    </a>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <h6>[[${order.count}]]</h6>
+                                            </td>
+                                            <td>
+                                                <h6>￥[[${order.total}]]</h6>
+                                            </td>
+
+                                            <td>
+                                                <span th:if="${order.status ==0}" class="badge badge-warning">未支付</span>
+                                                <span th:if="${order.status ==1}" class="badge badge-success">已支付</span>
+                                                <span th:if="${order.status ==2}" class="badge badge-danger">已取消</span>
+                                            </td>
+                                            <td>
+<!--                                                <a th:href="@{'/pay/'+${order.id}}" th:if="${order.status == 0}" class="btn btn-outline-success btn-sm">支付</a>-->
+                                                <a th:href="@{'/aliPayMoney/'+${order.id}}" th:if="${order.status == 0}" class="btn btn-outline-success btn-sm">支付</a>
+                                                <a th:href="@{'/cancel/'+${order.id}}" class="btn btn-outline-danger btn-sm">取消</a>
+
+                                            </td>
+                                        </tr>
+
+                                        </tbody>
+                                    </table>
+                                </div>
+
+
+
+
+                                <div class="pagination-area my-3">
+                                    <div aria-label="Page navigation example">
+                                        <ul class="pagination mt-0">
+                                            <li th:if="${pageInfo.hasPreviousPage}" class="page-item ">
+                                                <a class="page-link" th:href="'/userProfileSorder?pageNum='+${pageInfo.prePage}" aria-label="Previous">
+                                                    <span aria-hidden="true"><i class="far fa-angle-double-left"></i></span>
+                                                </a>
+                                            </li>
+                                            <li th:if="!${pageInfo.hasPreviousPage}" class="page-item disabled">
+                                                <a class="page-link"  aria-label="Previous">
+                                                    <span aria-hidden="true"><i class="far fa-angle-double-left"></i></span>
+                                                </a>
+                                            </li>
+
+
+                                            <li th:each="nav:${pageInfo.navigatepageNums}" class="page-item">
+                                                <a th:if="${nav != pageInfo.pageNum}" class="page-link active" th:href="'/userProfileSorder?pageNum='+${nav}" th:text="${nav}"></a>
+                                                <a th:if="${nav == pageInfo.pageNum}" class="page-link "  th:text="${nav}"></a>
+                                            </li>
+
+
+                                            <li th:if="${pageInfo.hasNextPage}" class="page-item">
+                                                <a class="page-link" th:href="'/userProfileSorder?pageNum='+${pageInfo.nextPage}" aria-label="Next">
+                                                    <span aria-hidden="true"><i class="far fa-angle-double-right"></i></span>
+                                                </a>
+                                            </li>
+                                            <li th:if="!${pageInfo.hasNextPage}" class="page-item disabled">
+                                                <a class="page-link"  aria-label="Next">
+                                                    <span aria-hidden="true"><i class="far fa-angle-double-right"></i></span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="pagination-showing">
+                                        <p>当前页数:[[${pageInfo.pageNum}]],共[[${pageInfo.total}]]条数据</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--  -->
+            </div>
+        </div>
+    </div>
+
+</main>
+<!--  -->
+
+
+
+
+<a href="#" id="scroll-top"><i class="far fa-angle-up"></i></a>
+
+
+<script th:src="@{/assets/js/jquery-3.6.0.min.js}"></script>
+<script th:src="@{/assets/js/modernizr.min.js}"></script>
+<script th:src="@{/assets/js/bootstrap.bundle.min.js}"></script>
+<script th:src="@{/assets/js/imagesloaded.pkgd.min.js}"></script>
+<script th:src="@{/assets/js/jquery.magnific-popup.min.js}"></script>
+<script th:src="@{/assets/js/isotope.pkgd.min.js}"></script>
+<script th:src="@{/assets/js/jquery.appear.min.js}"></script>
+<script th:src="@{/assets/js/jquery.easing.min.js}"></script>
+<script th:src="@{/assets/js/owl.carousel.min.js}"></script>
+<script th:src="@{/assets/js/counter-up.js}"></script>
+<script th:src="@{/assets/js/masonry.pkgd.min.js}"></script>
+<script th:src="@{/assets/js/jquery.nice-select.min.js}"></script>
+<script th:src="@{/assets/js/jquery-ui.min.js}"></script>
+<script th:src="@{/assets/js/jquery.timepicker.min.js}"></script>
+<script th:src="@{/assets/js/wow.min.js}"></script>
+<script th:src="@{/assets/js/main.js}"></script>
+</body>
+</html>

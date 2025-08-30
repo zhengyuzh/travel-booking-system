@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Koho admin is super flexible, powerful, clean &amp; modern responsive bootstrap 5 admin template with unlimited possibilities.">
+    <meta name="keywords" content="admin template, Koho admin template, dashboard template, flat admin template, responsive admin template, web app">
+    <meta name="author" content="pixelstrap">
+    <link rel="icon" href="../assets/images/favicon/favicon.png" type="image/x-icon">
+    <link rel="shortcut icon" href="../assets/images/favicon/favicon.png" type="image/x-icon">
+    <title>旅游网站后台管理系统</title>
+    <!-- Google font-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="../css/vendors/font-awesome.css">
+    <!-- ico-font-->
+    <link rel="stylesheet" type="text/css" href="../css/vendors/icofont.css">
+    <!-- Themify icon-->
+    <link rel="stylesheet" type="text/css" href="../css/vendors/themify.css">
+    <!-- Flag icon-->
+    <link rel="stylesheet" type="text/css" href="../css/vendors/flag-icon.css">
+    <!-- Feather icon-->
+    <link rel="stylesheet" type="text/css" href="../css/vendors/feather-icon.css">
+    <!-- Bootstrap css-->
+    <link rel="stylesheet" type="text/css" href="../css/vendors/bootstrap.css">
+    <!-- App css-->
+    <link rel="stylesheet" type="text/css" href="../css/style.css">
+    <link id="color" rel="stylesheet" href="../css/color-1.css" media="screen">
+    <!-- Responsive css-->
+    <link rel="stylesheet" type="text/css" href="../css/responsive.css">
+    <script src="../js/vue.js"></script>
+    <script src="../js/axios-0.18.0.js"></script>
+    <style>
+        .row{
+            background-color: #3adfba;
+        }
+    </style>
+</head>
+<body>
+<!-- Loader starts-->
+<div class="loader-wrapper">
+    <div class="loader"></div>
+</div>
+<!-- Loader ends-->
+<!-- login page start-->
+<div class="container-fluid" >
+
+    <div class="row">
+        <div class="col-xl-7"><img class="bg-img-cover bg-center" src="../images/login/4.png" alt="bg2"></div>
+        <div class="col-xl-5 p-0">
+            <div class="login-card">
+                <div  id="app">
+                    <div class="login-main">
+                        <form class="theme-form" th:action="@{/adminlogin}">
+                            <h2 class="text-center">旅游网站管理系统</h2>
+                            <p class="text-center">输入你的用户名密码来登录</p>
+                            <div class="form-group">
+                                <label class="col-form-label">用户名</label>
+                                <input  class="form-control" v-model="user.username" type="text" required="" name="username">
+                            </div>
+                            <div class="form-group">
+                                <label class="col-form-label">密码</label>
+                                <div class="form-input position-relative">
+                                    <input class="form-control" v-model="user.password" type="password" name="password" required="" placeholder="">
+                                </div>
+                            </div>
+
+                            <div class="form-group mb-0">
+
+                                <div class="text-end mt-3">
+                                    <button class="btn btn-info btn-block w-100" @click="login"  type="submit">登录               </button>
+                                </div>
+                            </div>
+
+
+
+                        </form>
+
+                        <p style="color:red"
+                           th:if="${not #strings.isEmpty(msg)}"
+                           th:text="${msg}">
+                            <!--这个msg既可以是model里的，也可以是session里的-->
+                        </p>
+                    </div>
+
+                    <script>
+                        new Vue({
+                            el:"#app",
+                            data() {
+                                return {
+                                    errMessage: "",
+                                    user:{
+                                        username:"",
+                                        password:""
+                                    }
+                                }
+                            },
+                            created(){
+                                this.login()
+                            },
+                            methods: {
+                                login() {
+                                    axios.post("login1",this.user).then(res => {
+                                        //判断登陆是否成功
+                                        if(res.data.flag) {
+                                            location.href = "chat1"
+                                        } else {
+                                            this.errMessage = res.data.message;
+                                        }
+                                    });
+                                }
+                            }
+                        });
+                    </script>
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <!-- latest jquery-->
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script src="../js/bootstrap/popper.min.js"></script>
+    <script src="../js/bootstrap/bootstrap.bundle.min.js"></script>
+    <!-- feather icon js-->
+    <script src="../js/icons/feather-icon/feather.min.js"></script>
+    <script src="../js/icons/feather-icon/feather-icon.js"></script>
+    <!-- Sidebar jquery-->
+    <script src="../js/config.js"></script>
+    <!-- Theme js-->
+    <script src="../js/script.js"></script>
+</div>
+</body>
+</html>
